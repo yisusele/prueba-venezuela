@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manos por Venezuela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rojo:#E4032E;
+  --amarillo:#FFCE00;
+  --azul:#0033A0;
+  --tinta:#15171C;
+  --hueso:#FAF8F4;
+  --gris:#9AA0AC;
+  --verde:#1FA45C;
+  --line:#E7E3DA;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--hueso);
+  color:var(--tinta);
+  -webkit-font-smoothing:antialiased;
+}
+.font-display{font-family:'Fraunces',serif;}
+h1,h2,h3{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;}
+.container{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+/* HERO */
+.hero{
+  position:relative;
+  background-image:
+   linear-gradient(180deg, rgba(8,10,16,0.55) 0%, rgba(8,10,16,0.72) 55%, rgba(8,10,16,0.94) 100%),
+   url('hero-bg.jpg');
+  background-size:cover;
+  background-position:center 30%;
+  color:#fff;
+  padding:64px 0 90px;
+  overflow:hidden;
+}
+.hero:before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+   radial-gradient(circle at 18% 30%, rgba(255,206,0,0.14), transparent 40%),
+   radial-gradient(circle at 85% 15%, rgba(228,3,46,0.18), transparent 45%);
+  pointer-events:none;
+}
+.tricolor-bar{height:6px;width:100%;background:linear-gradient(90deg,var(--amarillo) 0 33.3%, var(--azul) 33.3% 66.6%, var(--rojo) 66.6% 100%);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0 0;position:relative;z-index:2;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
+.logo-mark{width:38px;height:38px;flex-shrink:0;object-fit:contain;}
+.hero-logo{width:120px;height:auto;margin:0 auto 22px;display:block;opacity:0.95;}
+.admin-link{font-size:13px;opacity:0.7;border:1px solid rgba(255,255,255,0.25);padding:6px 14px;border-radius:30px;transition:opacity .2s;}
+.admin-link:hover{opacity:1;}
+
+.hero-inner{position:relative;z-index:2;text-align:center;padding-top:54px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(255,255,255,0.1);padding:7px 16px;border-radius:30px;margin-bottom:26px;border:1px solid rgba(255,255,255,0.18);}
+.hero h1{font-size:clamp(34px,5.6vw,62px);font-weight:600;line-height:1.08;max-width:780px;margin:0 auto 18px;}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--amarillo),#ffe27a);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero p.sub{font-size:17px;opacity:0.82;max-width:520px;margin:0 auto 36px;line-height:1.5;}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:54px;}
+.btn{padding:15px 28px;border-radius:50px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:8px;transition:transform .15s ease, box-shadow .15s ease;}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--amarillo);color:#15171C;box-shadow:0 10px 30px -8px rgba(255,206,0,0.5);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.3);}
+.btn-ghost:hover{background:rgba(255,255,255,0.16);}
+
+/* live counter card */
+.counter-card{
+  max-width:560px;margin:0 auto;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:20px;
+  padding:28px 30px;
+  backdrop-filter:blur(6px);
+  text-align:left;
+}
+.counter-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.counter-label{font-size:12.5px;text-transform:uppercase;letter-spacing:0.1em;opacity:0.7;display:flex;align-items:center;gap:7px;}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:#3DDC84;display:inline-block;animation:pulse 1.8s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,0.6);}70%{box-shadow:0 0 0 8px rgba(61,220,132,0);}100%{box-shadow:0 0 0 0 rgba(61,220,132,0);}}
+.counter-amount{font-family:'Fraunces',serif;font-size:clamp(34px,6vw,46px);font-weight:600;}
+.counter-amount span{font-size:0.45em;opacity:0.6;font-family:'Poppins',sans-serif;}
+.progress-track{height:10px;background:rgba(255,255,255,0.14);border-radius:30px;overflow:hidden;margin:18px 0 10px;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--amarillo),#fff2b0);border-radius:30px;transition:width .6s ease;}
+.progress-meta{display:flex;justify-content:space-between;font-size:13px;opacity:0.8;}
+
+/* SECTION generic */
+.section{padding:74px 0;}
+.section-head{text-align:center;max-width:600px;margin:0 auto 44px;}
+.section-eyebrow{font-size:12.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rojo);font-weight:600;margin-bottom:10px;}
+.section h2{font-size:clamp(26px,3.6vw,36px);font-weight:600;}
+.section p.desc{color:#5b6070;margin-top:10px;font-size:15px;line-height:1.55;}
+
+/* contributions list */
+.contrib-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;}
+.contrib-row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);animation:fadeIn .5s ease;}
+.contrib-row:last-child{border-bottom:none;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.contrib-num{width:30px;height:30px;border-radius:50%;background:var(--azul);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contrib-name{font-weight:600;font-size:14.5px;flex:1;min-width:0;}
+.contrib-ticket{font-size:12.5px;background:#FFF7DC;color:#8a6b00;padding:4px 10px;border-radius:30px;font-weight:600;white-space:nowrap;}
+.contrib-amount{font-weight:700;color:var(--rojo);font-size:14.5px;white-space:nowrap;}
+.contrib-empty{padding:40px;text-align:center;color:var(--gris);font-size:14px;}
+
+/* raffle grid */
+.legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;font-size:13px;color:#444;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.dot{width:11px;height:11px;border-radius:4px;display:inline-block;}
+.raffle-toolbar{display:flex;gap:10px;justify-content:center;margin-bottom:26px;flex-wrap:wrap;}
+.raffle-toolbar input{padding:10px 16px;border-radius:30px;border:1px solid var(--line);font-size:14px;width:220px;font-family:inherit;}
+.raffle-toolbar select{padding:10px 16px;border-radius:30px;border:1px solid var(--line);font-size:14px;font-family:inherit;background:#fff;color:var(--tinta);cursor:pointer;}
+.receipt-thumb{display:inline-block;width:34px;height:34px;border-radius:6px;overflow:hidden;border:1px solid var(--line);vertical-align:middle;cursor:pointer;}
+.receipt-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.no-receipt{font-size:12px;color:var(--gris);}
+.prize-card{position:relative;flex:0 0 240px;max-width:240px;aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:#0f1117;box-shadow:0 18px 40px -14px rgba(0,0,0,0.5);cursor:pointer;display:block;color:#fff;text-decoration:none;scroll-snap-align:start;}
+.prizes-track{display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;padding:4px 32px 44px;-ms-overflow-style:none;scrollbar-width:none;}
+
+.sponsors-marquee{width:100%;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);}
+.sponsors-track{display:flex;width:max-content;animation:sponsorsScroll linear infinite;}
+.sponsors-track:hover{animation-play-state:paused;}
+.sponsors-track.static{width:100%;justify-content:center;flex-wrap:wrap;animation:none;}
+@keyframes sponsorsScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.sponsor-logo-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 26px;flex:0 0 auto;}
+.sponsor-logo-item img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:1px solid var(--line);background:#fff;}
+.sponsor-logo-item span{font-size:12px;font-weight:600;color:var(--tinta);white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis;}
+.prizes-divider{height:1px;background:var(--line);max-width:640px;margin:36px auto;}
+.prizes-track::-webkit-scrollbar{display:none;}
+@media(max-width:700px){ .prize-card{flex-basis:74%;max-width:74%;} }
+.prize-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.prize-card:before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(6,8,14,0) 0%, rgba(6,8,14,0) 28%, rgba(6,8,14,0.18) 45%, rgba(6,8,14,0.48) 62%, rgba(6,8,14,0.78) 80%, rgba(6,8,14,0.94) 100%);}
+.prize-badge{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--tinta);font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:30px;}
+.prize-ig{position:absolute;top:14px;right:14px;z-index:2;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.16);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.prize-bottom{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:34px 18px 18px;text-shadow:0 1px 6px rgba(0,0,0,0.55);}
+.prize-name{font-family:'Fraunces',serif;font-weight:600;font-size:19px;line-height:1.2;}
+.prize-desc{font-size:12.5px;opacity:0.92;margin-top:5px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.prize-social{font-size:12.5px;font-weight:700;margin-top:10px;opacity:0.95;display:inline-flex;align-items:center;gap:5px;text-decoration:underline;text-underline-offset:3px;}
+.prize-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;}
+.prize-dot.active{background:#fff;}
+
+/* QUIENES SOMOS split + carousel */
+.quienes-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:44px;align-items:center;max-width:980px;margin:0 auto;text-align:left;}
+.quienes-grid .desc{max-width:none;text-align:left;margin:0;}
+.quienes-photos{position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#F0EEE8;box-shadow:0 20px 50px -20px rgba(0,0,0,0.25);}
+.quienes-photos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease;}
+.quienes-photos img.active{opacity:1;}
+.quienes-dots{display:flex;gap:6px;justify-content:center;margin-top:14px;}
+.quienes-dots span{width:6px;height:6px;border-radius:50%;background:var(--line);}
+.quienes-dots span.active{background:var(--rojo);}
+@media(max-width:760px){ .quienes-grid{grid-template-columns:1fr;} .quienes-photos{aspect-ratio:16/10;order:-1;} }
+
+/* ANNOUNCEMENT POPUP */
+.modal.announce-box{max-width:420px;text-align:center;padding:0;overflow:hidden;}
+.announce-img{width:100%;max-height:220px;object-fit:cover;display:block;}
+.announce-body{padding:26px 26px 30px;}
+.announce-body h3{font-size:21px;margin-bottom:10px;}
+.announce-body p{font-size:14px;color:#555;line-height:1.6;margin-bottom:18px;white-space:pre-wrap;}
+.upload-box.small{padding:10px;font-size:12.5px;}
+#countdownValues{display:flex;gap:14px;justify-content:center;}
+#countdownValues span{display:flex;flex-direction:column;align-items:center;font-weight:800;}
+#countdownValues span small{font-weight:500;font-size:10px;opacity:0.75;text-transform:uppercase;}
+.seat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:7px;max-width:900px;margin:0 auto;}
+.seat{
+  aspect-ratio:1;border-radius:8px 8px 3px 3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;
+  transition:transform .12s ease;
+}
+.seat.avail{background:var(--verde);}
+.seat.pending{background:var(--amarillo);color:#5a4400;}
+.seat.paid{background:var(--rojo);}
+.seat.blocked{background:#C7CBD3;color:#fff;cursor:not-allowed;}
+.seat.avail:hover,.seat.pending:hover{transform:scale(1.12);cursor:pointer;}
+.seat.selected{outline:3px solid var(--tinta);outline-offset:1px;transform:scale(1.1);box-shadow:0 0 0 2px #fff inset;}
+
+.selection-bar{
+  position:sticky;bottom:14px;z-index:30;
+  max-width:520px;margin:18px auto 0;
+  background:var(--tinta);color:#fff;border-radius:14px;
+  padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+.selection-bar .info{font-size:13.5px;font-weight:600;}
+.selection-bar .info b{color:var(--amarillo);}
+.selection-bar .actions{display:flex;gap:8px;}
+.selection-bar button{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;}
+.selection-bar .btn-clear{background:transparent;color:#fff;opacity:0.75;}
+.selection-bar .btn-go{background:var(--amarillo);color:#5a4400;}
+
+.receipt-overlay{position:fixed;inset:0;background:rgba(15,17,23,0.78);display:flex;align-items:center;justify-content:center;z-index:60;padding:20px;}
+.receipt-box{position:relative;max-width:90vw;max-height:90vh;}
+.receipt-box img{max-width:90vw;max-height:85vh;border-radius:10px;display:block;}
+.receipt-box .modal-close{position:absolute;top:-14px;right:-14px;background:#fff;}
+
+/* popup */
+.overlay{position:fixed;inset:0;background:rgba(15,17,23,0.55);display:flex;align-items:center;justify-content:center;z-index:50;padding:18px;}
+.modal{background:#fff;border-radius:18px;max-width:440px;width:100%;max-height:90vh;overflow-y:auto;padding:30px;position:relative;}
+.modal h3{font-size:22px;margin-bottom:4px;}
+.modal .modal-sub{font-size:13.5px;color:var(--gris);margin-bottom:20px;}
+.modal-close{position:absolute;top:18px;right:18px;width:30px;height:30px;border-radius:50%;background:#F0EEE8;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:12.5px;font-weight:600;margin-bottom:6px;color:#444;}
+.field input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit;}
+.field input:focus{outline:2px solid var(--azul);border-color:transparent;}
+.pay-box{background:#FAF8F4;border:1px solid var(--line);border-radius:12px;padding:16px;margin:18px 0;font-size:13.5px;}
+.pay-box div+div{margin-top:6px;}
+.pay-box b{color:var(--rojo);}
+.upload-box{border:1.5px dashed var(--line);border-radius:12px;padding:18px;text-align:center;font-size:13px;color:var(--gris);cursor:pointer;}
+.upload-box.has-file{border-color:var(--verde);color:var(--verde);font-weight:600;}
+.submit-btn{width:100%;background:var(--rojo);color:#fff;padding:14px;border-radius:11px;font-weight:600;font-size:15px;margin-top:6px;}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+.note-tiny{font-size:11.5px;color:var(--gris);margin-top:10px;line-height:1.5;text-align:center;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--tinta);color:#fff;padding:14px 22px;border-radius:30px;font-size:14px;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+
+/* transparency */
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px;}
+.trust-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;}
+.trust-card .num{font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--azul);}
+.trust-card .lbl{font-size:13px;color:#5b6070;margin-top:4px;}
+.update-row{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+.update-row:last-child{border-bottom:none;}
+.update-dot{width:9px;height:9px;border-radius:50%;background:var(--rojo);margin-top:6px;flex-shrink:0;}
+.update-date{font-size:12px;color:var(--gris);margin-bottom:2px;}
+.update-text{font-size:14px;line-height:1.5;}
+
+footer{background:var(--tinta);color:rgba(255,255,255,0.6);padding:40px 0;text-align:center;font-size:13px;}
+footer .logo{justify-content:center;color:#fff;margin-bottom:10px;}
+
+/* ADMIN */
+.admin-screen{display:none;min-height:100vh;background:var(--hueso);}
+.admin-login{max-width:380px;margin:90px auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:36px;}
+.admin-header{background:var(--tinta);color:#fff;padding:18px 0;}
+.admin-header .container{display:flex;justify-content:space-between;align-items:center;}
+.stat-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:26px 0;}
+.stat-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;}
+.stat-card .v{font-family:'Fraunces',serif;font-size:22px;font-weight:600;}
+.stat-card .l{font-size:11.5px;color:var(--gris);margin-top:3px;}
+.admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center;}
+.admin-toolbar select,.admin-toolbar input{padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-family:inherit;}
+.admin-toolbar button{padding:9px 16px;border-radius:8px;font-size:13.5px;font-weight:600;background:var(--azul);color:#fff;}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);}
+th{background:#F4F2EC;font-size:11.5px;text-transform:uppercase;letter-spacing:0.04em;color:#666;}
+tr:last-child td{border-bottom:none;}
+.badge{padding:3px 10px;border-radius:30px;font-size:11px;font-weight:700;}
+.badge.avail{background:#E6F7EC;color:var(--verde);}
+.badge.pending{background:#FFF7DC;color:#8a6b00;}
+.badge.paid{background:#FCE7EA;color:var(--rojo);}
+.badge.blocked{background:#EDEEF1;color:#777;}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.row-actions button{font-size:11px;padding:5px 9px;border-radius:6px;background:#F0EEE8;}
+.row-actions button.confirm{background:#E6F7EC;color:var(--verde);}
+.row-actions button.release{background:#FFF7DC;color:#8a6b00;}
+.row-actions button.block{background:#EDEEF1;color:#555;}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:24px;}
+.settings-grid .field input{padding:9px 12px;}
+.tabs{display:flex;gap:6px;margin-bottom:20px;}
+.tab{padding:9px 16px;border-radius:30px;font-size:13.5px;font-weight:600;background:#fff;border:1px solid var(--line);}
+.tab.active{background:var(--tinta);color:#fff;border-color:var(--tinta);}
+
+@media(max-width:760px){
+  .stat-cards{grid-template-columns:repeat(2,1fr);}
+  .trust-grid{grid-template-columns:1fr;}
+  .settings-grid{grid-template-columns:1fr;}
+  table{font-size:11.5px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ PUBLIC SITE ============ -->
+<div id="publicSite">
+  <div class="hero">
+    <div class="tricolor-bar"></div>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo"><img class="logo-mark" src="logo.png" alt="Manos por Venezuela"> Manos por Venezuela</div>
+        <a href="#" class="admin-link" onclick="showAdmin();return false;">Panel admin</a>
+      </nav>
+      <div class="hero-inner">
+        <img class="hero-logo" src="logo.png" alt="Manos por Venezuela">
+        <div class="eyebrow">🇻🇪 Rifa solidaria · 500 números</div>
+        <h1>Cada número ayuda a <em>una familia venezolana.</em></h1>
+        <p class="sub">Compra tu número, sigue el progreso en vivo y entérate exactamente a dónde va cada aporte.</p>
+        <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="document.getElementById('rifa').scrollIntoView({behavior:'smooth'})">Comprar un número de la rifa →</button>
+          <button class="btn" id="heroPrizesBtn" style="display:none;background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.35);" onclick="document.getElementById('prizesSection').scrollIntoView({behavior:'smooth'})">🎁 Emprendimientos</button>
+        </div>
+
+        <div class="counter-card" id="countdownCard" style="display:none;margin-bottom:16px;">
+          <div class="counter-top">
+            <div class="counter-label"><span class="pulse-dot"></span>El sorteo se realiza en</div>
+          </div>
+          <div class="counter-amount" id="countdownValues" style="font-size:22px;letter-spacing:1px;"></div>
+        </div>
+
+        <div class="counter-card" style="margin-bottom:16px;">
+          <div class="counter-top">
+            <div class="counter-label"><span class="pulse-dot"></span>Recaudado hasta ahora</div>
+          </div>
+          <div class="counter-amount" id="countAmount">$0</div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+          <div class="progress-meta"><span id="progressText">$0 de $0</span><span id="progressPct">0%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ULTIMOS APORTES -->
+  <section class="section" id="aportesSection" style="display:none;">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">En vivo</div>
+        <h2>Últimos aportes</h2>
+        <p class="desc">Cada compra confirmada aparece aquí automáticamente.</p>
+      </div>
+      <div class="contrib-list" id="contribList"></div>
+    </div>
+  </section>
+
+  <!-- RIFA -->
+  <!-- PREMIOS (arriba de los números de la rifa) -->
+  <section class="section" id="prizesSection" style="display:none;background:#fff;border-bottom:1px solid var(--line);">
+    <div class="container">
+
+      <div id="sponsorsBlock" style="display:none;">
+        <div style="text-align:center;margin-bottom:18px;">
+          <span style="font-size:12.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--rojo);font-weight:700;">Comunidad</span>
+          <span style="font-size:12.5px;color:var(--gris);margin-left:6px;">· Emprendimientos que se han sumado</span>
+        </div>
+        <div class="sponsors-marquee">
+          <div class="sponsors-track" id="sponsorsTrack"></div>
+        </div>
+      </div>
+
+      <div class="prizes-divider" id="prizesDividerLine"></div>
+
+      <div id="rafflePrizesBlock" style="display:none;">
+        <div class="section-head">
+          <div class="section-eyebrow">Esta edición</div>
+          <h2>Premios que se sortearán en esta oportunidad</h2>
+          <p class="desc">Estos son algunos de los premios confirmados para este sorteo (serán entre 5 y 6, todavía por definir). Tócalos para conocer al emprendimiento en Instagram.</p>
+        </div>
+        <div id="prizesCarousel" class="prizes-track"></div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px;">
+          <button style="background:#F0EEE8;color:var(--tinta);padding:8px 16px;border-radius:8px;font-size:16px;" onclick="prizeNav(-1)">←</button>
+          <div id="prizesDots" style="display:flex;gap:6px;"></div>
+          <button style="background:#F0EEE8;color:var(--tinta);padding:8px 16px;border-radius:8px;font-size:16px;" onclick="prizeNav(1)">→</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="rifa" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Elige tu número</div>
+        <h2>Mapa de la rifa</h2>
+        <p class="desc">Toca uno o varios números disponibles (verde) para seleccionarlos y reservarlos juntos.</p>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:var(--verde)"></i>Disponible</span>
+        <span><i class="dot" style="background:var(--amarillo)"></i>Reservado, pendiente de pago</span>
+        <span><i class="dot" style="background:var(--rojo)"></i>Pagado y confirmado</span>
+        <span><i class="dot" style="background:#C7CBD3"></i>Bloqueado</span>
+      </div>
+      <div class="raffle-toolbar">
+        <input type="text" id="seatSearch" placeholder="Buscar número (ej: 248)" oninput="renderGrid()">
+        <select id="seatFilter" onchange="renderGrid()">
+          <option value="all">Todos los números</option>
+          <option value="avail">Disponibles</option>
+          <option value="pending">Reservados</option>
+          <option value="paid">Pagados</option>
+          <option value="blocked">Bloqueados</option>
+        </select>
+      </div>
+      <div class="seat-grid" id="seatGrid"></div>
+      <div class="selection-bar" id="selectionBar" style="display:none;">
+        <div class="info"><b id="selCount">0</b> número(s) seleccionado(s) · <span id="selTotal">$0</span></div>
+        <div class="actions">
+          <button class="btn-clear" onclick="clearSelection()">Cancelar</button>
+          <button class="btn-go" onclick="openMultiPurchase()">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENCIA -->
+  <section class="section" id="transparenciaSection" style="display:none;">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Transparencia total</div>
+        <h2>¿A dónde irá tu aporte?</h2>
+        <p class="desc">Publicamos cada envío y actualización para que sepas exactamente cómo se usa lo recaudado.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card"><div class="num" id="trustTotal">$0</div><div class="lbl">Total enviado a familias</div></div>
+        <div class="trust-card"><div class="num" id="trustShipments">0</div><div class="lbl">Envíos de ayuda realizados</div></div>
+        <div class="trust-card"><div class="num">100%</div><div class="lbl">De lo recaudado se destina a ayuda</div></div>
+      </div>
+      <div style="margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 22px;" id="updatesList">
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIENES SOMOS (al final) -->
+  <section class="section" id="quienesSection" style="display:none;background:#fff;border-top:1px solid var(--line);">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Quiénes somos</div>
+        <h2>Manos por Venezuela LP</h2>
+      </div>
+      <div class="quienes-grid">
+        <p class="desc" id="quienesText"></p>
+        <div>
+          <div class="quienes-photos" id="quienesPhotos"></div>
+          <div class="quienes-dots" id="quienesDots"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="logo" style="justify-content:center;"><img class="logo-mark" src="logo.png" alt="Manos por Venezuela"> Manos por Venezuela</div>
+      <div>Una iniciativa solidaria, 100% transparente. © 2026</div>
+    </div>
+  </footer>
+</div>
+
+<!-- PURCHASE MODAL -->
+<div class="overlay" id="purchaseOverlay" style="display:none;">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModal()">✕</div>
+    <h3 id="modalTitle">Número 0</h3>
+    <div class="modal-sub" id="modalSub">Completa tus datos para reservar este número.</div>
+    <div class="field"><label>Nombre y apellido *</label><input id="fName" placeholder="Ej: Fabiola Multimedial"></div>
+    <div class="field"><label>WhatsApp *</label><input id="fWhats" placeholder="+58 412 0000000"></div>
+    <div class="field"><label>Instagram (opcional)</label><input id="fInsta" placeholder="@usuario"></div>
+    <div class="field"><label>Email (opcional)</label><input id="fEmail" placeholder="correo@ejemplo.com"></div>
+
+    <div class="pay-box">
+      <div>Monto a pagar: <b id="modalPrice">$6.000</b></div>
+      <div>Alias de transferencia: <b id="modalAlias">manos.venezuela.mp</b></div>
+      <div>También puedes pagar con Mercado Pago al confirmar.</div>
+    </div>
+
+    <div class="field">
+      <label>Comprobante de pago <span style="color:var(--rojo);">*obligatorio</span></label>
+      <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">📎 Subir comprobante</div>
+      <input type="file" id="fileInput" style="display:none" onchange="onFileChosen(this)">
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitPurchase()">Reservar</button>
+    <div class="note-tiny">Tu número quedará reservado por 24 horas mientras confirmamos el pago. Recibirás una confirmación por WhatsApp.</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<div class="receipt-overlay" id="receiptOverlay" style="display:none;" onclick="if(event.target===this) closeReceipt()">
+  <div class="receipt-box">
+    <div class="modal-close" onclick="closeReceipt()">✕</div>
+    <img id="receiptImg" src="" alt="Comprobante">
+  </div>
+</div>
+
+<!-- ANUNCIO POP-UP -->
+<div class="overlay" id="announceOverlay" style="display:none;" onclick="if(event.target===this) closeAnnouncement()">
+  <div class="modal announce-box">
+    <div class="modal-close" onclick="closeAnnouncement()">✕</div>
+    <img id="announceImg" class="announce-img" src="" alt="" style="display:none;">
+    <div class="announce-body">
+      <h3 id="announceTitle"></h3>
+      <p id="announceText"></p>
+      <button id="announceBtn" class="btn btn-primary" style="display:none;background:var(--rojo);color:#fff;width:100%;justify-content:center;"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ADMIN ============ -->
+<div class="admin-screen" id="adminScreen">
+  <div id="adminLoginView">
+    <div class="admin-login">
+      <h3 style="margin-bottom:6px;">Panel administrador</h3>
+      <p style="font-size:13px;color:var(--gris);margin-bottom:20px;">Acceso restringido — Manos por Venezuela</p>
+      <div class="field"><label>Contraseña</label><input type="password" id="adminPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <button class="submit-btn" onclick="adminLogin()">Ingresar</button>
+      <div class="note-tiny" style="text-align:left;"></div>
+      <a href="#" onclick="hideAdmin();return false;" style="display:block;text-align:center;margin-top:16px;font-size:13px;color:var(--azul);">← Volver al sitio</a>
+    </div>
+  </div>
+
+  <div id="adminPanelView" style="display:none;">
+    <div class="admin-header">
+      <div class="container">
+        <div class="logo"><img class="logo-mark" src="logo.png" alt="Manos por Venezuela"> Panel administrador</div>
+        <div style="display:flex;gap:14px;align-items:center;">
+          <a href="#" onclick="hideAdmin();return false;" style="color:#fff;font-size:13px;opacity:0.8;">Ver sitio público</a>
+          <a href="#" onclick="adminLogout();return false;" style="color:#fff;font-size:13px;opacity:0.8;">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="padding-top:26px;padding-bottom:60px;">
+      <div class="tabs">
+        <div class="tab active" data-tab="numeros" onclick="switchTab('numeros')">Números</div>
+        <div class="tab" data-tab="transparencia" onclick="switchTab('transparencia')">Transparencia</div>
+        <div class="tab" data-tab="premios" onclick="switchTab('premios')">Premios</div>
+        <div class="tab" data-tab="secciones" onclick="switchTab('secciones')">Secciones</div>
+        <div class="tab" data-tab="anuncio" onclick="switchTab('anuncio')">Anuncio</div>
+        <div class="tab" data-tab="config" onclick="switchTab('config')">Configuración</div>
+        <div class="tab" data-tab="historial" onclick="switchTab('historial')">Historial</div>
+      </div>
+
+      <div class="stat-cards">
+        <div class="stat-card"><div class="v" id="statTotal">$0</div><div class="l">Recaudado total</div></div>
+        <div class="stat-card"><div class="v" id="statSold">0</div><div class="l">Vendidos</div></div>
+        <div class="stat-card"><div class="v" id="statAvail">0</div><div class="l">Disponibles</div></div>
+        <div class="stat-card"><div class="v" id="statPending">0</div><div class="l">Reservados</div></div>
+        <div class="stat-card"><div class="v" id="statLast">—</div><div class="l">Última compra</div></div>
+      </div>
+
+      <div id="tabNumeros">
+        <div class="admin-toolbar">
+          <select id="adminFilter" onchange="renderAdminTable()">
+            <option value="all">Todos</option>
+            <option value="avail">Disponibles</option>
+            <option value="pending">Reservados</option>
+            <option value="paid">Pagados</option>
+            <option value="blocked">Bloqueados</option>
+          </select>
+          <input type="text" id="adminSearch" placeholder="Buscar por nombre, número o WhatsApp" oninput="renderAdminTable()" style="width:260px;">
+          <button onclick="exportCSV()">⬇ Descargar CSV</button>
+          <button onclick="addNumbersPrompt()" style="background:var(--verde);">+ Agregar números</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead><tr><th>Número</th><th>Estado</th><th>Nombre</th><th>WhatsApp</th><th>Fecha</th><th>Pago</th><th>Comprobante</th><th>Acciones</th></tr></thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tabTransparencia" style="display:none;">
+        <div class="settings-grid">
+          <div class="field"><label>Total enviado a familias</label><input id="cfgTotalSent" type="number"></div>
+          <div class="field"><label>Cantidad de envíos realizados</label><input id="cfgShipments" type="number"></div>
+        </div>
+        <button class="btn btn-primary" style="background:var(--azul);color:#fff;margin-bottom:30px;" onclick="saveTransparency()">Guardar datos de transparencia</button>
+
+        <h3 style="font-size:18px;margin-bottom:12px;">Actualizaciones publicadas</h3>
+        <div class="settings-grid" style="margin-bottom:14px;">
+          <div class="field"><label>Fecha (ej: 30 jun 2026)</label><input id="newUpdateDate" type="text" placeholder="30 jun 2026"></div>
+          <div class="field"><label>Descripción</label><input id="newUpdateText" type="text" placeholder="Ej: Entrega de alimentos a 10 familias en Caracas"></div>
+        </div>
+        <button onclick="addUpdate()" style="background:var(--verde);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600;margin-bottom:20px;">+ Publicar actualización</button>
+
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 18px;" id="adminUpdatesList"></div>
+      </div>
+
+      <div id="tabPremios" style="display:none;">
+        <h3 style="font-size:18px;margin-bottom:6px;">Emprendimientos que se han sumado (logos en movimiento)</h3>
+        <p style="font-size:13px;color:var(--gris);margin-bottom:14px;">Estos aparecen arriba de todo, como una fila de logos que se mueve sola en loop. Acá van TODOS los que se sumaron, aunque no todos sorteen premio en esta edición.</p>
+        <div class="settings-grid" style="margin-bottom:14px;">
+          <div class="field"><label>Logo del emprendimiento</label>
+            <div class="upload-box" id="sponsorLogoLabel" onclick="document.getElementById('newSponsorLogo').click()">📎 Subir logo</div>
+            <input type="file" id="newSponsorLogo" accept="image/*" style="display:none;" onchange="onSponsorLogoChosen(this)">
+          </div>
+          <div class="field"><label>Nombre del emprendimiento</label><input id="newSponsorName" type="text" placeholder="Ej: Panadería La Espiga"></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:20px;">
+          <button id="sponsorSubmitBtn" onclick="addSponsor()" style="background:var(--verde);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600;">+ Agregar emprendimiento</button>
+          <button id="sponsorCancelBtn" onclick="cancelSponsorEdit()" style="display:none;background:#F0EEE8;color:#555;padding:9px 16px;border-radius:8px;font-weight:600;">Cancelar edición</button>
+        </div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin-bottom:34px;" id="adminSponsorsList"></div>
+
+        <div style="height:1px;background:var(--line);margin-bottom:30px;"></div>
+
+        <h3 style="font-size:18px;margin-bottom:6px;">Premios que se sortearán en esta edición</h3>
+        <p style="font-size:13px;color:var(--gris);margin-bottom:14px;">Este es el subconjunto de emprendimientos (por ejemplo 5 o 6) cuyo premio SÍ se sorteará esta vez. Se muestran como card grande con foto y descripción.</p>
+        <div class="settings-grid" style="margin-bottom:14px;">
+          <div class="field"><label>Foto del emprendimiento</label>
+            <div class="upload-box" id="prizeImgLabel" onclick="document.getElementById('newPrizeFile').click()">📎 Subir foto</div>
+            <input type="file" id="newPrizeFile" accept="image/*" style="display:none;" onchange="onPrizeFileChosen(this)">
+          </div>
+          <div class="field"><label>Nombre del emprendimiento</label><input id="newPrizeName" type="text" placeholder="Ej: Panadería La Espiga"></div>
+          <div class="field"><label>Instagram (usuario o link)</label><input id="newPrizeSocial" type="text" placeholder="@laespiga"></div>
+        </div>
+        <div class="field" style="margin-bottom:14px;"><label>Descripción del premio</label>
+          <textarea id="newPrizeDesc" rows="3" style="width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:14px;resize:vertical;" placeholder="Contanos en qué consiste el premio que ofrece este emprendimiento"></textarea>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:20px;">
+          <button id="prizeSubmitBtn" onclick="addPrize()" style="background:var(--verde);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600;">+ Agregar premio de esta edición</button>
+          <button id="prizeCancelBtn" onclick="cancelPrizeEdit()" style="display:none;background:#F0EEE8;color:#555;padding:9px 16px;border-radius:8px;font-weight:600;">Cancelar edición</button>
+        </div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 18px;" id="adminPrizesList"></div>
+      </div>
+
+      <div id="tabSecciones" style="display:none;">
+        <h3 style="font-size:18px;margin-bottom:12px;">Mostrar / ocultar secciones en el inicio</h3>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:14px;">
+          <label style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;cursor:pointer;">
+            <input type="checkbox" id="cfgShowAportes" style="width:18px;height:18px;"> Mostrar sección "Últimos aportes"
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;cursor:pointer;">
+            <input type="checkbox" id="cfgShowTransparencia" style="width:18px;height:18px;"> Mostrar sección "Transparencia total"
+          </label>
+        </div>
+
+        <h3 style="font-size:18px;margin-bottom:12px;">Fecha del sorteo</h3>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:14px;">
+          <label style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;cursor:pointer;">
+            <input type="checkbox" id="cfgRaffleEnabled" style="width:18px;height:18px;"> Mostrar cuenta regresiva del sorteo
+          </label>
+          <div class="field" style="max-width:320px;"><label>Fecha y hora del sorteo</label><input id="cfgRaffleDate" type="datetime-local"></div>
+        </div>
+        <button class="btn btn-primary" style="background:var(--azul);color:#fff;margin-bottom:30px;" onclick="saveConfig()">Guardar secciones y sorteo</button>
+
+        <h3 style="font-size:18px;margin-bottom:12px;">Quiénes somos</h3>
+        <div class="field" style="margin-bottom:14px;"><label>Texto que aparece en la sección "Quiénes somos" del inicio</label>
+          <textarea id="cfgQuienesSomos" rows="6" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:14px;resize:vertical;" placeholder="Contanos quiénes son, por qué nace esta iniciativa, etc."></textarea>
+        </div>
+        <button class="btn btn-primary" style="background:var(--azul);color:#fff;margin-bottom:24px;" onclick="saveQuienesSomos()">Guardar "Quiénes somos"</button>
+
+        <h4 style="font-size:15px;margin-bottom:10px;">Fotos del carrusel (se pasan solas mientras se lee el texto)</h4>
+        <div class="field" style="max-width:320px;margin-bottom:12px;">
+          <div class="upload-box" id="quienesFotoLabel" onclick="document.getElementById('newQuienesFoto').click()">📎 Subir foto</div>
+          <input type="file" id="newQuienesFoto" accept="image/*" style="display:none;" onchange="onQuienesFotoChosen(this)">
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;" id="adminQuienesFotos"></div>
+      </div>
+
+      <div id="tabAnuncio" style="display:none;">
+        <h3 style="font-size:18px;margin-bottom:12px;">Pop-up de anuncio</h3>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px;">
+          <label style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;cursor:pointer;">
+            <input type="checkbox" id="cfgPopupEnabled" style="width:18px;height:18px;"> Mostrar pop-up de anuncio a los visitantes
+          </label>
+        </div>
+        <div class="settings-grid" style="margin-bottom:14px;">
+          <div class="field"><label>Título</label><input id="cfgPopupTitle" type="text" placeholder="Ej: ¡Ya arrancamos la rifa 2026!"></div>
+          <div class="field"><label>Texto del botón (opcional)</label><input id="cfgPopupBtnText" type="text" placeholder="Ej: Comprar mi número"></div>
+          <div class="field"><label>Link del botón (opcional)</label><input id="cfgPopupBtnLink" type="text" placeholder="Ej: #rifa o https://instagram.com/..."></div>
+          <div class="field"><label>Imagen del anuncio (opcional)</label>
+            <div class="upload-box" id="popupImgLabel" onclick="document.getElementById('newPopupImg').click()">📎 Subir imagen</div>
+            <input type="file" id="newPopupImg" accept="image/*" style="display:none;" onchange="onPopupImgChosen(this)">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:18px;"><label>Mensaje</label>
+          <textarea id="cfgPopupText" rows="4" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:14px;resize:vertical;" placeholder="Escribe el mensaje del anuncio"></textarea>
+        </div>
+        <button class="btn btn-primary" style="background:var(--azul);color:#fff;margin-right:10px;" onclick="savePopupConfig()">Guardar anuncio</button>
+        <button style="background:#F0EEE8;color:#555;padding:14px 22px;border-radius:11px;font-weight:600;" onclick="previewPopup()">Vista previa</button>
+      </div>
+
+      <div id="tabConfig" style="display:none;">
+        <div class="settings-grid">
+          <div class="field"><label>Precio por número (CLP/ARS/$)</label><input id="cfgPrice" type="number"></div>
+          <div class="field"><label>Meta económica</label><input id="cfgGoal" type="number"></div>
+          <div class="field"><label>Alias de transferencia</label><input id="cfgAlias" type="text"></div>
+          <div class="field"><label>Total de números en la rifa</label><input id="cfgTotalNumbers" type="number" readonly style="background:#F4F2EC;"></div>
+        </div>
+        <button class="btn btn-primary" style="background:var(--azul);color:#fff;" onclick="saveConfig()">Guardar configuración</button>
+      </div>
+
+      <div id="tabHistorial" style="display:none;">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 18px;max-height:500px;overflow-y:auto;" id="historyList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+/* ======================= FIREBASE (base de datos compartida real) ======================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, doc, getDoc, setDoc, deleteDoc,
+  collection, getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAmgraArHP0n935oy2Sgz5Ot12LaNgh23s",
+  authDomain: "manos-por-venezuela-lp.firebaseapp.com",
+  projectId: "manos-por-venezuela-lp",
+  storageBucket: "manos-por-venezuela-lp.firebasestorage.app",
+  messagingSenderId: "570979766994",
+  appId: "1:570979766994:web:fcf2ddcd96b0f175e1930b",
+  measurementId: "G-K6RTKJHP28"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+const COLLECTION = "mpv";
+
+/* Esta interfaz imita window.storage para no tener que tocar el resto del código.
+   Cada "key" (mpv:config, mpv:numbers, etc.) se guarda como un documento en Firestore,
+   dentro de la colección "mpv", con el contenido en el campo "value". */
+window.storage = {
+  async get(key){
+    const snap = await getDoc(doc(db, COLLECTION, key));
+    if(!snap.exists()) throw new Error("not found: "+key);
+    return { key, value: snap.data().value, shared: true };
+  },
+  async set(key, value){
+    await setDoc(doc(db, COLLECTION, key), { value });
+    return { key, value, shared: true };
+  },
+  async delete(key){
+    await deleteDoc(doc(db, COLLECTION, key));
+    return { key, deleted: true, shared: true };
+  },
+  async list(prefix){
+    const snaps = await getDocs(collection(db, COLLECTION));
+    const keys = [];
+    snaps.forEach(d => { if(!prefix || d.id.startsWith(prefix)) keys.push(d.id); });
+    return { keys, prefix, shared: true };
+  }
+};
+
+window.dispatchEvent(new Event('firebaseReady'));
+</script>
+
+<script>
+/* ======================= STATE / STORAGE ======================= */
+const TOTAL_NUMBERS_DEFAULT = 500;
+let config = {
+  price: 6000, goal: 3000000, alias: "manos.venezuela.mp", totalNumbers: TOTAL_NUMBERS_DEFAULT,
+  totalSent: 0, shipments: 0,
+  showAportes: false, showTransparencia: false,
+  raffleEnabled: false, raffleDate: "",
+  quienesSomos: "", quienesFotos: [],
+  popup: { enabled:false, title:"", text:"", img:"", buttonText:"", buttonLink:"" }
+};
+let updates = []; // [{date, text}]
+let numbers = {}; // { "1": {status, name, whats, insta, email, amount, date} }
+let history = [];
+let prizes = []; // [{img, name, social, description}]
+let prizeIndex = 0;
+let editingPrizeIndex = -1;
+let sponsors = []; // [{name, logo}]
+let editingSponsorIndex = -1;
+let selectedSeats = [];
+let uploadedFile = false;
+let uploadedFileData = null;
+
+const STORAGE_KEY_CONFIG = "mpv:config";
+const STORAGE_KEY_NUMBERS = "mpv:numbers";
+const STORAGE_KEY_HISTORY = "mpv:history";
+const STORAGE_KEY_UPDATES = "mpv:updates";
+const STORAGE_KEY_PRIZES = "mpv:prizes";
+const STORAGE_KEY_SPONSORS = "mpv:sponsors";
+
+async function loadAll(){
+  /* Antes cada get() se esperaba uno por uno (6 viajes de ida y vuelta en fila),
+     lo que generaba el retraso visible al entrar/recargar (popup, botón de
+     "emprendimiento", etc. tardaban en aparecer). Ahora se piden todos a la vez
+     con Promise.all, así el tiempo total de carga es el del más lento de los 6,
+     no la suma de los 6. */
+  const [configResult, numbersResult, historyResult, updatesResult, prizesResult, sponsorsResult] = await Promise.all([
+    window.storage.get(STORAGE_KEY_CONFIG, true).catch(()=>null),
+    window.storage.get(STORAGE_KEY_NUMBERS, true).catch(()=>null),
+    window.storage.get(STORAGE_KEY_HISTORY, true).catch(()=>null),
+    window.storage.get(STORAGE_KEY_UPDATES, true).catch(()=>null),
+    window.storage.get(STORAGE_KEY_PRIZES, true).catch(()=>null),
+    window.storage.get(STORAGE_KEY_SPONSORS, true).catch(()=>null),
+  ]);
+
+  if(configResult) config = Object.assign({}, config, JSON.parse(configResult.value));
+  else await window.storage.set(STORAGE_KEY_CONFIG, JSON.stringify(config), true);
+
+  if(numbersResult) numbers = JSON.parse(numbersResult.value);
+  else { seedNumbers(); await persistNumbers(); }
+
+  history = historyResult ? JSON.parse(historyResult.value) : [];
+  updates = updatesResult ? JSON.parse(updatesResult.value) : [];
+  prizes = prizesResult ? JSON.parse(prizesResult.value) : [];
+  sponsors = sponsorsResult ? JSON.parse(sponsorsResult.value) : [];
+
+  renderAll();
+  startCountdown();
+  startQuienesCarousel();
+  startPrizesCarousel();
+  maybeShowAnnouncement();
+}
+
+function seedNumbers(){
+  numbers = {};
+  for(let i=1;i<=config.totalNumbers;i++){
+    numbers[i] = {status:"avail", name:"", whats:"", insta:"", email:"", amount:0, date:""};
+  }
+}
+
+async function persistNumbers(){ await window.storage.set(STORAGE_KEY_NUMBERS, JSON.stringify(numbers), true); }
+async function persistConfig(){ await window.storage.set(STORAGE_KEY_CONFIG, JSON.stringify(config), true); }
+async function persistHistory(){ await window.storage.set(STORAGE_KEY_HISTORY, JSON.stringify(history), true); }
+async function persistUpdates(){ await window.storage.set(STORAGE_KEY_UPDATES, JSON.stringify(updates), true); }
+async function persistPrizes(){ await window.storage.set(STORAGE_KEY_PRIZES, JSON.stringify(prizes), true); }
+async function persistSponsors(){ await window.storage.set(STORAGE_KEY_SPONSORS, JSON.stringify(sponsors), true); }
+
+function logHistory(action){
+  history.unshift({action, date: new Date().toLocaleString('es-AR')});
+  if(history.length>200) history = history.slice(0,200);
+  persistHistory();
+}
+
+/* ======================= RENDER: PUBLIC ======================= */
+function fmt(n){ return "$" + Number(n).toLocaleString('es-AR'); }
+
+function renderAll(){
+  renderCounter();
+  renderContribList();
+  renderGrid();
+  renderTrust();
+  renderQuienesSomos();
+  renderPrizes();
+  renderSponsorsMarquee();
+  renderSectionVisibility();
+  updateCountdownVisibility();
+  // admin
+  document.getElementById('cfgPrice').value = config.price;
+  document.getElementById('cfgGoal').value = config.goal;
+  document.getElementById('cfgAlias').value = config.alias;
+  document.getElementById('cfgTotalNumbers').value = config.totalNumbers;
+  document.getElementById('cfgShowAportes').checked = !!config.showAportes;
+  document.getElementById('cfgShowTransparencia').checked = !!config.showTransparencia;
+  document.getElementById('cfgRaffleEnabled').checked = !!config.raffleEnabled;
+  document.getElementById('cfgRaffleDate').value = config.raffleDate || '';
+  document.getElementById('cfgQuienesSomos').value = config.quienesSomos || '';
+  renderAdminStats();
+  renderAdminTable();
+  renderHistory();
+  renderAdminUpdates();
+  renderAdminPrizes();
+  renderAdminSponsors();
+  renderAdminQuienesFotos();
+  renderAdminPopupForm();
+}
+
+function renderSectionVisibility(){
+  document.getElementById('aportesSection').style.display = config.showAportes ? 'block' : 'none';
+  document.getElementById('transparenciaSection').style.display = config.showTransparencia ? 'block' : 'none';
+  const quienes = document.getElementById('quienesSection');
+  if(quienes) quienes.style.display = ((config.quienesSomos && config.quienesSomos.trim()) || (config.quienesFotos && config.quienesFotos.length)) ? 'block' : 'none';
+  const hasSponsors = sponsors && sponsors.length;
+  const hasPrizes = prizes && prizes.length;
+  const prizesWrap = document.getElementById('prizesSection');
+  if(prizesWrap) prizesWrap.style.display = (hasSponsors || hasPrizes) ? 'block' : 'none';
+  const sponsorsBlock = document.getElementById('sponsorsBlock');
+  if(sponsorsBlock) sponsorsBlock.style.display = hasSponsors ? 'block' : 'none';
+  const rafflePrizesBlock = document.getElementById('rafflePrizesBlock');
+  if(rafflePrizesBlock) rafflePrizesBlock.style.display = hasPrizes ? 'block' : 'none';
+  const dividerLine = document.getElementById('prizesDividerLine');
+  if(dividerLine) dividerLine.style.display = (hasSponsors && hasPrizes) ? 'block' : 'none';
+  const heroPrizesBtn = document.getElementById('heroPrizesBtn');
+  if(heroPrizesBtn) heroPrizesBtn.style.display = (hasSponsors || hasPrizes) ? 'inline-flex' : 'none';
+}
+
+function totalRaised(){
+  let t=0;
+  Object.values(numbers).forEach(v=>{ if(v.status==='paid') t += Number(v.amount||0); });
+  return t;
+}
+
+function renderCounter(){
+  const raised = totalRaised();
+  document.getElementById('countAmount').textContent = fmt(raised);
+  const pct = Math.min(100, Math.round((raised/config.goal)*100)) || 0;
+  document.getElementById('progressFill').style.width = pct+"%";
+  document.getElementById('progressText').textContent = fmt(raised)+" de "+fmt(config.goal);
+  document.getElementById('progressPct').textContent = pct+"%";
+}
+
+function renderContribList(){
+  const list = Object.entries(numbers)
+    .filter(([k,v])=>v.status==='paid')
+    .sort((a,b)=> (b[1].date||"").localeCompare(a[1].date||"") || (b[0]-a[0]))
+    .slice(0,12);
+  const host = document.getElementById('contribList');
+  if(list.length===0){ host.innerHTML = '<div class="contrib-empty">Aún no hay aportes confirmados. ¡Sé el primero!</div>'; return; }
+  host.innerHTML = list.map(([num,v],i)=>`
+    <div class="contrib-row">
+      <div class="contrib-num">${i+1}</div>
+      <div class="contrib-name">${escapeHtml(v.name||'Anónimo')}</div>
+      <div class="contrib-ticket">N° ${num}</div>
+      <div class="contrib-amount">${fmt(v.amount)}</div>
+    </div>`).join('');
+}
+
+function renderGrid(){
+  const search = (document.getElementById('seatSearch')?.value||"").trim();
+  const filter = document.getElementById('seatFilter')?.value || 'all';
+  const host = document.getElementById('seatGrid');
+  let html = "";
+  for(let i=1;i<=config.totalNumbers;i++){
+    if(search && !String(i).includes(search)) continue;
+    const v = numbers[i] || {status:'avail'};
+    if(filter!=='all' && v.status!==filter) continue;
+    let cls = v.status==='avail'?'avail':v.status==='pending'?'pending':v.status==='paid'?'paid':'blocked';
+    if(selectedSeats.includes(i)) cls += ' selected';
+    html += `<div class="seat ${cls}" onclick="onSeatClick(${i})">${i}</div>`;
+  }
+  host.innerHTML = html || '<div style="grid-column:1/-1;text-align:center;color:var(--gris);">Sin resultados</div>';
+  updateSelectionBar();
+}
+
+function renderTrust(){
+  document.getElementById('trustTotal').textContent = fmt(config.totalSent||0);
+  document.getElementById('trustShipments').textContent = config.shipments||0;
+  const host = document.getElementById('updatesList');
+  if(!updates.length){
+    host.innerHTML = '<div class="contrib-empty">Aún no hay actualizaciones publicadas. El equipo de Manos por Venezuela compartirá aquí cada envío de ayuda.</div>';
+    return;
+  }
+  const sorted = [...updates].sort((a,b)=> (b.dateRaw||'').localeCompare(a.dateRaw||''));
+  host.innerHTML = sorted.map(u=>`
+    <div class="update-row">
+      <div class="update-dot"></div>
+      <div><div class="update-date">${escapeHtml(u.date)}</div><div class="update-text">${escapeHtml(u.text)}</div></div>
+    </div>`).join('');
+}
+
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ======================= QUIENES SOMOS ======================= */
+let quienesPhotoIndex = 0;
+let quienesTimer = null;
+function renderQuienesSomos(){
+  const host = document.getElementById('quienesText');
+  if(host) host.innerHTML = escapeHtml(config.quienesSomos||'').replace(/\n/g,'<br>');
+  renderQuienesPhotos();
+}
+function renderQuienesPhotos(){
+  const wrap = document.getElementById('quienesPhotos');
+  const dotsHost = document.getElementById('quienesDots');
+  if(!wrap) return;
+  const fotos = config.quienesFotos||[];
+  if(!fotos.length){ wrap.style.display='none'; if(dotsHost) dotsHost.innerHTML=''; return; }
+  wrap.style.display='block';
+  if(quienesPhotoIndex >= fotos.length) quienesPhotoIndex = 0;
+  wrap.innerHTML = fotos.map((f,i)=>`<img src="${f}" class="${i===quienesPhotoIndex?'active':''}">`).join('');
+  if(dotsHost) dotsHost.innerHTML = fotos.map((_,i)=>`<span class="${i===quienesPhotoIndex?'active':''}"></span>`).join('');
+}
+function startQuienesCarousel(){
+  if(quienesTimer) clearInterval(quienesTimer);
+  quienesTimer = setInterval(()=>{
+    const fotos = config.quienesFotos||[];
+    if(fotos.length<2) return;
+    quienesPhotoIndex = (quienesPhotoIndex+1) % fotos.length;
+    renderQuienesPhotos();
+  }, 3800);
+}
+
+/* ======================= PREMIOS / EMPRENDIMIENTOS (carrusel) ======================= */
+function instagramUrl(handle){
+  if(!handle) return '';
+  let h = handle.trim().replace(/^@/,'');
+  if(/^https?:\/\//i.test(handle)) return handle.trim();
+  return h ? `https://www.instagram.com/${h}/` : '';
+}
+
+function renderPrizes(){
+  const host = document.getElementById('prizesCarousel');
+  if(!host) return;
+  if(!prizes.length){ host.innerHTML=''; const d=document.getElementById('prizesDots'); if(d) d.innerHTML=''; return; }
+  host.innerHTML = prizes.map((p)=>{
+    const link = instagramUrl(p.social);
+    return `
+    <a class="prize-card" ${link?`href="${link}" target="_blank" rel="noopener"`:''}>
+      ${p.img ? `<img src="${p.img}" alt="${escapeHtml(p.name||'')}">` : ''}
+      <div class="prize-badge">★ Emprendimiento</div>
+      ${p.social ? `<div class="prize-ig">📷</div>` : ''}
+      <div class="prize-bottom">
+        <div class="prize-name">${escapeHtml(p.name||'')}</div>
+        ${p.description ? `<div class="prize-desc">${escapeHtml(p.description)}</div>` : ''}
+        ${link ? `<div class="prize-social">Conocé más <span style="font-size:14px;">→</span></div>` : ''}
+      </div>
+    </a>`;
+  }).join('');
+  const dots = document.getElementById('prizesDots');
+  if(dots){
+    dots.innerHTML = prizes.map((_,i)=>`<span class="prize-dot ${i===prizeIndex?'active':''}" onclick="goToPrize(${i})"></span>`).join('');
+  }
+  scrollToPrize(prizeIndex, false);
+}
+function scrollToPrize(i, smooth){
+  const track = document.getElementById('prizesCarousel');
+  if(!track) return;
+  const card = track.children[i];
+  if(!card) return;
+  track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: smooth===false ? 'auto' : 'smooth' });
+  const dots = document.querySelectorAll('#prizesDots .prize-dot');
+  dots.forEach((d,idx)=>d.classList.toggle('active', idx===i));
+}
+function prizeNav(dir){
+  if(!prizes.length) return;
+  prizeIndex = (prizeIndex + dir + prizes.length) % prizes.length;
+  scrollToPrize(prizeIndex, true);
+  restartPrizesAutoplay();
+}
+function goToPrize(i){
+  prizeIndex = i;
+  scrollToPrize(prizeIndex, true);
+  restartPrizesAutoplay();
+}
+let prizesTimer = null;
+function startPrizesCarousel(){
+  if(prizesTimer) clearInterval(prizesTimer);
+  prizesTimer = setInterval(()=>{
+    if(!prizes.length) return;
+    prizeIndex = (prizeIndex + 1) % prizes.length;
+    scrollToPrize(prizeIndex, true);
+  }, 3500);
+}
+function restartPrizesAutoplay(){ startPrizesCarousel(); }
+
+/* ======================= SPONSORS (logos en movimiento) ======================= */
+function renderSponsorsMarquee(){
+  const track = document.getElementById('sponsorsTrack');
+  if(!track) return;
+  if(!sponsors.length){ track.innerHTML=''; return; }
+  const itemHtml = (s)=>`
+    <div class="sponsor-logo-item">
+      ${s.logo ? `<img src="${s.logo}" alt="${escapeHtml(s.name||'')}">` : `<div style="width:62px;height:62px;border-radius:50%;background:#F0EEE8;"></div>`}
+      <span>${escapeHtml(s.name||'')}</span>
+    </div>`;
+  const enoughToScroll = sponsors.length > 5;
+  if(enoughToScroll){
+    // duplicamos la lista para que el loop sea infinito y continuo
+    track.innerHTML = sponsors.map(itemHtml).join('') + sponsors.map(itemHtml).join('');
+    track.classList.remove('static');
+    const duration = Math.max(14, sponsors.length * 3.2);
+    track.style.animationDuration = duration + 's';
+  } else {
+    track.innerHTML = sponsors.map(itemHtml).join('');
+    track.classList.add('static');
+    track.style.animationDuration = '';
+  }
+}
+
+/* ======================= COUNTDOWN ======================= */
+let countdownTimer = null;
+function updateCountdownVisibility(){
+  const el = document.getElementById('countdownCard');
+  if(!el) return;
+  if(config.raffleEnabled && config.raffleDate){
+    el.style.display = 'block';
+    tickCountdown();
+  } else {
+    el.style.display = 'none';
+  }
+}
+function tickCountdown(){
+  const target = new Date(config.raffleDate).getTime();
+  const now = Date.now();
+  const diff = target - now;
+  const el = document.getElementById('countdownValues');
+  if(!el) return;
+  if(isNaN(target) || diff <= 0){
+    el.textContent = '¡El sorteo ya se realizó o está por comenzar!';
+    return;
+  }
+  const d = Math.floor(diff/(1000*60*60*24));
+  const h = Math.floor((diff/(1000*60*60))%24);
+  const m = Math.floor((diff/(1000*60))%60);
+  const s = Math.floor((diff/1000)%60);
+  el.innerHTML = `<span>${d}<small>días</small></span><span>${h}<small>hs</small></span><span>${m}<small>min</small></span><span>${s}<small>seg</small></span>`;
+}
+function startCountdown(){
+  if(countdownTimer) clearInterval(countdownTimer);
+  countdownTimer = setInterval(()=>{ if(config.raffleEnabled && config.raffleDate) tickCountdown(); }, 1000);
+}
+
+/* ======================= PURCHASE FLOW ======================= */
+function onSeatClick(n){
+  const v = numbers[n] || {status:'avail'};
+  if(v.status==='blocked'){ return; }
+  if(v.status==='paid'){ showToast('Este número ya fue pagado y confirmado.'); return; }
+  if(v.status==='pending'){ showToast('Este número está reservado, pendiente de pago.'); return; }
+  const idx = selectedSeats.indexOf(n);
+  if(idx>-1) selectedSeats.splice(idx,1);
+  else selectedSeats.push(n);
+  renderGrid();
+}
+
+function updateSelectionBar(){
+  const bar = document.getElementById('selectionBar');
+  if(!bar) return;
+  if(selectedSeats.length===0){ bar.style.display='none'; return; }
+  bar.style.display='flex';
+  document.getElementById('selCount').textContent = selectedSeats.length;
+  document.getElementById('selTotal').textContent = fmt(config.price * selectedSeats.length);
+}
+
+function clearSelection(){
+  selectedSeats = [];
+  renderGrid();
+}
+
+function openMultiPurchase(){
+  if(!selectedSeats.length) return;
+  const sorted = [...selectedSeats].sort((a,b)=>a-b);
+  document.getElementById('modalTitle').textContent = sorted.length===1 ? ('Número '+sorted[0]) : (sorted.length+' números: '+sorted.join(', '));
+  document.getElementById('modalSub').textContent = sorted.length===1
+    ? 'Completa tus datos para reservar este número.'
+    : 'Completa tus datos para reservar estos '+sorted.length+' números juntos.';
+  document.getElementById('modalPrice').textContent = sorted.length>1
+    ? fmt(config.price*sorted.length)+' ('+fmt(config.price)+' c/u)'
+    : fmt(config.price);
+  document.getElementById('modalAlias').textContent = config.alias;
+  document.getElementById('fName').value='';
+  document.getElementById('fWhats').value='';
+  document.getElementById('fInsta').value='';
+  document.getElementById('fEmail').value='';
+  uploadedFile=false;
+  uploadedFileData=null;
+  document.getElementById('uploadBox').textContent='📎 Subir comprobante';
+  document.getElementById('uploadBox').classList.remove('has-file');
+  document.getElementById('purchaseOverlay').style.display='flex';
+}
+function closeModal(){ document.getElementById('purchaseOverlay').style.display='none'; }
+function onFileChosen(input){
+  if(input.files && input.files[0]){
+    const file = input.files[0];
+    document.getElementById('uploadBox').textContent='⏳ Procesando '+file.name+'...';
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const img = new Image();
+      img.onload = function(){
+        const maxW = 900;
+        const scale = Math.min(1, maxW/img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width*scale);
+        canvas.height = Math.round(img.height*scale);
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        uploadedFileData = canvas.toDataURL('image/jpeg', 0.7);
+        uploadedFile = true;
+        document.getElementById('uploadBox').textContent='✓ '+file.name;
+        document.getElementById('uploadBox').classList.add('has-file');
+      };
+      img.onerror = function(){
+        // No es una imagen (ej: PDF); igual lo guardamos tal cual si no es muy pesado.
+        if(file.size < 1500000){
+          uploadedFileData = e.target.result;
+          uploadedFile = true;
+          document.getElementById('uploadBox').textContent='✓ '+file.name;
+          document.getElementById('uploadBox').classList.add('has-file');
+        } else {
+          uploadedFileData = null;
+          uploadedFile = false;
+          document.getElementById('uploadBox').textContent='📎 Subir comprobante';
+          showToast('El archivo es muy pesado. Sube una imagen (JPG/PNG) más liviana.');
+        }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+async function submitPurchase(){
+  const name = document.getElementById('fName').value.trim();
+  const whats = document.getElementById('fWhats').value.trim();
+  if(!name || !whats){ showToast('Completa nombre y WhatsApp para continuar.'); return; }
+  if(!selectedSeats.length) return;
+  const receipt = uploadedFileData || '';
+  if(!receipt){ showToast('Debes adjuntar el comprobante de pago para continuar.'); return; }
+  const insta = document.getElementById('fInsta').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const dateStr = new Date().toLocaleDateString('es-AR');
+  const reservedAt = Date.now();
+  const seats = [...selectedSeats];
+  seats.forEach(seat=>{
+    numbers[seat] = {
+      status:'pending',
+      name, whats, insta, email,
+      amount: config.price,
+      date: dateStr,
+      reservedAt,
+      receipt
+    };
+  });
+  await persistNumbers();
+  logHistory(`Número(s) ${seats.join(', ')} reservado(s) por ${name}`);
+  selectedSeats = [];
+  renderAll();
+  closeModal();
+  showToast(seats.length>1
+    ? `¡${seats.length} números reservados! Te contactaremos por WhatsApp para confirmar el pago.`
+    : '¡Número reservado! Te contactaremos por WhatsApp para confirmar el pago.');
+}
+
+function showToast(msg){
+  const host = document.getElementById('toastHost');
+  const t = document.createElement('div');
+  t.className='toast';
+  t.textContent = msg;
+  host.appendChild(t);
+  setTimeout(()=>t.remove(), 3200);
+}
+
+/* Se quitó la liberación automática de números "pendientes" a las 24hs.
+   Ahora una reserva se mantiene indefinidamente hasta que el administrador
+   la confirme como pagada o la libere manualmente desde el panel. */
+
+/* ======================= ADMIN ======================= */
+let adminAuthed = false;
+function showAdmin(){
+  document.getElementById('publicSite').style.display='none';
+  document.getElementById('adminScreen').style.display='block';
+  if(adminAuthed){ document.getElementById('adminLoginView').style.display='none'; document.getElementById('adminPanelView').style.display='block'; }
+}
+function hideAdmin(){
+  document.getElementById('adminScreen').style.display='none';
+  document.getElementById('publicSite').style.display='block';
+}
+function adminLogin(){
+  const pass = document.getElementById('adminPass').value;
+  if(pass === 'manos2026'){
+    adminAuthed = true;
+    document.getElementById('adminLoginView').style.display='none';
+    document.getElementById('adminPanelView').style.display='block';
+    renderAll();
+  } else { showToast('Contraseña incorrecta'); }
+}
+function adminLogout(){ adminAuthed=false; hideAdmin(); }
+
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===tab));
+  document.getElementById('tabNumeros').style.display = tab==='numeros'?'block':'none';
+  document.getElementById('tabTransparencia').style.display = tab==='transparencia'?'block':'none';
+  document.getElementById('tabPremios').style.display = tab==='premios'?'block':'none';
+  document.getElementById('tabSecciones').style.display = tab==='secciones'?'block':'none';
+  document.getElementById('tabAnuncio').style.display = tab==='anuncio'?'block':'none';
+  document.getElementById('tabConfig').style.display = tab==='config'?'block':'none';
+  document.getElementById('tabHistorial').style.display = tab==='historial'?'block':'none';
+  if(tab==='transparencia') renderAdminUpdates();
+  if(tab==='premios'){ renderAdminPrizes(); renderAdminSponsors(); }
+  if(tab==='secciones') renderAdminQuienesFotos();
+  if(tab==='anuncio') renderAdminPopupForm();
+}
+
+function renderAdminStats(){
+  const vals = Object.values(numbers);
+  document.getElementById('statTotal').textContent = fmt(totalRaised());
+  document.getElementById('statSold').textContent = vals.filter(v=>v.status==='paid').length;
+  document.getElementById('statAvail').textContent = vals.filter(v=>v.status==='avail').length;
+  document.getElementById('statPending').textContent = vals.filter(v=>v.status==='pending').length;
+  const paidEntries = Object.entries(numbers).filter(([k,v])=>v.status==='paid');
+  document.getElementById('statLast').textContent = paidEntries.length ? ('N° '+paidEntries[paidEntries.length-1][0]) : '—';
+}
+
+function renderAdminTable(){
+  const filter = document.getElementById('adminFilter').value;
+  const search = (document.getElementById('adminSearch').value||"").toLowerCase();
+  const body = document.getElementById('adminTableBody');
+  let rows = Object.entries(numbers);
+  if(filter!=='all') rows = rows.filter(([k,v])=>v.status===filter);
+  if(search) rows = rows.filter(([k,v])=> String(k).includes(search) || (v.name||"").toLowerCase().includes(search) || (v.whats||"").toLowerCase().includes(search));
+  rows.sort((a,b)=>Number(a[0])-Number(b[0]));
+  body.innerHTML = rows.map(([k,v])=>{
+    const badge = v.status==='avail'?'<span class="badge avail">Disponible</span>':
+                  v.status==='pending'?'<span class="badge pending">Reservado</span>':
+                  v.status==='paid'?'<span class="badge paid">Pagado</span>':'<span class="badge blocked">Bloqueado</span>';
+    const pago = v.status==='paid'?'Confirmado':v.status==='pending'?'Pendiente':'-';
+    const receiptCell = v.receipt
+      ? `<div class="receipt-thumb" onclick="viewReceipt(${k})"><img src="${v.receipt}" alt="Comprobante ${k}"></div>`
+      : `<span class="no-receipt">Sin comprobante</span>`;
+    return `<tr>
+      <td><b>${k}</b></td>
+      <td>${badge}</td>
+      <td>${v.name?escapeHtml(v.name):'-'}</td>
+      <td>${v.whats?escapeHtml(v.whats):'-'}</td>
+      <td>${v.date||'-'}</td>
+      <td>${pago}</td>
+      <td>${receiptCell}</td>
+      <td><div class="row-actions">
+        ${v.status==='pending'?`<button class="confirm" onclick="confirmPayment(${k})">Confirmar pago</button><button class="release" onclick="releaseNumber(${k})">Liberar</button>`:''}
+        ${v.status==='avail'?`<button class="block" onclick="blockNumber(${k})">Bloquear</button>`:''}
+        ${v.status==='blocked'?`<button class="confirm" onclick="unblockNumber(${k})">Desbloquear</button>`:''}
+        ${v.status==='paid'?`<button class="release" onclick="releaseNumber(${k})">Revertir</button>`:''}
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+function viewReceipt(n){
+  const v = numbers[n];
+  if(!v || !v.receipt) return;
+  document.getElementById('receiptImg').src = v.receipt;
+  document.getElementById('receiptOverlay').style.display='flex';
+}
+function closeReceipt(){
+  document.getElementById('receiptOverlay').style.display='none';
+  document.getElementById('receiptImg').src='';
+}
+
+async function confirmPayment(n){
+  numbers[n].status='paid';
+  numbers[n].date = new Date().toLocaleDateString('es-AR');
+  await persistNumbers();
+  logHistory(`Pago confirmado para número ${n} (${numbers[n].name||'sin nombre'})`);
+  renderAll();
+  showToast('Pago confirmado, número '+n);
+}
+async function releaseNumber(n){
+  numbers[n] = {status:'avail', name:'', whats:'', insta:'', email:'', amount:0, date:'', receipt:''};
+  await persistNumbers();
+  logHistory(`Número ${n} liberado manualmente`);
+  renderAll();
+}
+async function blockNumber(n){
+  numbers[n].status='blocked';
+  await persistNumbers();
+  logHistory(`Número ${n} bloqueado`);
+  renderAll();
+}
+async function unblockNumber(n){
+  numbers[n].status='avail';
+  await persistNumbers();
+  logHistory(`Número ${n} desbloqueado`);
+  renderAll();
+}
+
+async function addNumbersPrompt(){
+  const extra = prompt('¿Cuántos números nuevos quieres agregar?');
+  const n = parseInt(extra);
+  if(!n || n<=0) return;
+  const start = config.totalNumbers+1;
+  for(let i=start;i<start+n;i++){
+    numbers[i] = {status:'avail', name:'', whats:'', insta:'', email:'', amount:0, date:'', receipt:''};
+  }
+  config.totalNumbers += n;
+  await persistNumbers(); await persistConfig();
+  logHistory(`Se agregaron ${n} números nuevos a la rifa`);
+  renderAll();
+}
+
+async function saveConfig(){
+  config.price = Number(document.getElementById('cfgPrice').value)||config.price;
+  config.goal = Number(document.getElementById('cfgGoal').value)||config.goal;
+  config.alias = document.getElementById('cfgAlias').value.trim()||config.alias;
+  config.showAportes = document.getElementById('cfgShowAportes').checked;
+  config.showTransparencia = document.getElementById('cfgShowTransparencia').checked;
+  config.raffleEnabled = document.getElementById('cfgRaffleEnabled').checked;
+  config.raffleDate = document.getElementById('cfgRaffleDate').value || '';
+  await persistConfig();
+  logHistory('Configuración actualizada (precio / meta / alias / secciones / sorteo)');
+  renderAll();
+  showToast('Configuración guardada');
+}
+
+async function saveQuienesSomos(){
+  config.quienesSomos = document.getElementById('cfgQuienesSomos').value.trim();
+  await persistConfig();
+  logHistory('Contenido de "Quiénes somos" actualizado');
+  renderAll();
+  showToast('Contenido guardado');
+}
+
+/* ======================= ADMIN: FOTOS "QUIENES SOMOS" ======================= */
+function onQuienesFotoChosen(input){
+  if(!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = async function(){
+      const maxW = 900;
+      const scale = Math.min(1, maxW/img.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width*scale);
+      canvas.height = Math.round(img.height*scale);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      config.quienesFotos = config.quienesFotos || [];
+      config.quienesFotos.push(dataUrl);
+      await persistConfig();
+      logHistory('Foto agregada al carrusel de "Quiénes somos"');
+      document.getElementById('quienesFotoLabel').textContent = '📎 Subir foto';
+      const fi = document.getElementById('newQuienesFoto'); if(fi) fi.value='';
+      renderAdminQuienesFotos();
+      renderAll();
+      showToast('Foto agregada');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderAdminQuienesFotos(){
+  const host = document.getElementById('adminQuienesFotos');
+  if(!host) return;
+  const fotos = config.quienesFotos||[];
+  if(!fotos.length){ host.innerHTML = '<div style="padding:10px 0;color:var(--gris);font-size:13px;">Sin fotos cargadas aún.</div>'; return; }
+  host.innerHTML = fotos.map((f,i)=>`
+    <div style="position:relative;">
+      <img src="${f}" style="width:84px;height:84px;object-fit:cover;border-radius:10px;border:1px solid var(--line);">
+      <button onclick="deleteQuienesFoto(${i})" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--rojo);color:#fff;font-size:12px;line-height:1;">✕</button>
+    </div>`).join('');
+}
+
+async function deleteQuienesFoto(i){
+  config.quienesFotos.splice(i,1);
+  await persistConfig();
+  logHistory('Foto eliminada del carrusel de "Quiénes somos"');
+  renderAdminQuienesFotos();
+  renderAll();
+}
+
+/* ======================= ADMIN: POP-UP DE ANUNCIO ======================= */
+function renderAdminPopupForm(){
+  const p = config.popup || {};
+  const enabledEl = document.getElementById('cfgPopupEnabled');
+  if(!enabledEl) return;
+  enabledEl.checked = !!p.enabled;
+  document.getElementById('cfgPopupTitle').value = p.title || '';
+  document.getElementById('cfgPopupText').value = p.text || '';
+  document.getElementById('cfgPopupBtnText').value = p.buttonText || '';
+  document.getElementById('cfgPopupBtnLink').value = p.buttonLink || '';
+  document.getElementById('popupImgLabel').textContent = p.img ? '✓ Imagen cargada (subí otra para reemplazarla)' : '📎 Subir imagen';
+}
+
+function onPopupImgChosen(input){
+  if(!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const maxW = 700;
+      const scale = Math.min(1, maxW/img.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width*scale);
+      canvas.height = Math.round(img.height*scale);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      window._pendingPopupImg = canvas.toDataURL('image/jpeg', 0.8);
+      document.getElementById('popupImgLabel').textContent = '✓ ' + file.name;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function savePopupConfig(){
+  config.popup = {
+    enabled: document.getElementById('cfgPopupEnabled').checked,
+    title: document.getElementById('cfgPopupTitle').value.trim(),
+    text: document.getElementById('cfgPopupText').value.trim(),
+    buttonText: document.getElementById('cfgPopupBtnText').value.trim(),
+    buttonLink: document.getElementById('cfgPopupBtnLink').value.trim(),
+    img: (window._pendingPopupImg !== undefined ? window._pendingPopupImg : config.popup.img) || ''
+  };
+  window._pendingPopupImg = undefined;
+  await persistConfig();
+  logHistory('Pop-up de anuncio actualizado');
+  showToast('Anuncio guardado');
+}
+
+function previewPopup(){
+  const draft = {
+    enabled:true,
+    title: document.getElementById('cfgPopupTitle').value.trim(),
+    text: document.getElementById('cfgPopupText').value.trim(),
+    buttonText: document.getElementById('cfgPopupBtnText').value.trim(),
+    buttonLink: document.getElementById('cfgPopupBtnLink').value.trim(),
+    img: (window._pendingPopupImg !== undefined ? window._pendingPopupImg : config.popup.img) || ''
+  };
+  showAnnouncementPopup(draft);
+}
+
+function maybeShowAnnouncement(){
+  const p = config.popup;
+  if(!p || !p.enabled || (!p.title && !p.text)) return;
+  const key = 'mpv_popup_seen:' + (p.title+'|'+p.text).length + ':' + (p.title||'').slice(0,20);
+  try{ if(sessionStorage.getItem(key)) return; sessionStorage.setItem(key,'1'); }catch(e){}
+  showAnnouncementPopup(p);
+}
+
+function showAnnouncementPopup(p){
+  const overlay = document.getElementById('announceOverlay');
+  if(!overlay) return;
+  document.getElementById('announceImg').style.display = p.img ? 'block' : 'none';
+  document.getElementById('announceImg').src = p.img || '';
+  document.getElementById('announceTitle').textContent = p.title || '';
+  document.getElementById('announceText').textContent = p.text || '';
+  const btn = document.getElementById('announceBtn');
+  if(p.buttonText){
+    btn.style.display='inline-flex';
+    btn.textContent = p.buttonText;
+    btn.onclick = function(){
+      closeAnnouncement();
+      if(p.buttonLink){
+        if(p.buttonLink.startsWith('#')) document.querySelector(p.buttonLink)?.scrollIntoView({behavior:'smooth'});
+        else window.open(p.buttonLink, '_blank');
+      }
+    };
+  } else { btn.style.display='none'; }
+  overlay.style.display='flex';
+}
+function closeAnnouncement(){ document.getElementById('announceOverlay').style.display='none'; }
+
+/* ======================= ADMIN: PREMIOS / EMPRENDIMIENTOS ======================= */
+function renderAdminPrizes(){
+  const host = document.getElementById('adminPrizesList');
+  if(!host) return;
+  if(!prizes.length){ host.innerHTML='<div style="padding:20px;text-align:center;color:var(--gris);">Sin emprendimientos cargados aún.</div>'; return; }
+  host.innerHTML = prizes.map((p,i)=>`
+    <div class="update-row">
+      ${p.img ? `<img src="${p.img}" style="width:44px;height:44px;border-radius:8px;object-fit:cover;" alt="">` : '<div style="width:44px;height:44px;border-radius:8px;background:#F0EEE8;"></div>'}
+      <div style="flex:1;"><div class="update-date">${escapeHtml(p.name||'(sin nombre)')}</div><div class="update-text">${escapeHtml(p.social||'')}${p.description?' · '+escapeHtml(p.description):''}</div></div>
+      <div class="row-actions">
+        <button onclick="editPrize(${i})" style="background:#EAF1FF;color:var(--azul);border-radius:6px;padding:5px 10px;font-size:11px;">Editar</button>
+        <button onclick="deletePrize(${i})" style="background:#FCE7EA;color:var(--rojo);border-radius:6px;padding:5px 10px;font-size:11px;">Eliminar</button>
+      </div>
+    </div>`).join('');
+}
+
+function onPrizeFileChosen(input){
+  if(!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const maxW = 500;
+      const scale = Math.min(1, maxW/img.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width*scale);
+      canvas.height = Math.round(img.height*scale);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      window._pendingPrizeImg = canvas.toDataURL('image/jpeg', 0.8);
+      document.getElementById('prizeImgLabel').textContent = '✓ ' + file.name;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function editPrize(i){
+  editingPrizeIndex = i;
+  const p = prizes[i];
+  document.getElementById('newPrizeName').value = p.name||'';
+  document.getElementById('newPrizeSocial').value = p.social||'';
+  document.getElementById('newPrizeDesc').value = p.description||'';
+  window._pendingPrizeImg = p.img||null;
+  document.getElementById('prizeImgLabel').textContent = p.img ? '✓ Foto actual (subí otra para reemplazarla)' : '📎 Subir foto';
+  document.getElementById('prizeSubmitBtn').textContent = 'Guardar cambios';
+  document.getElementById('prizeCancelBtn').style.display = 'inline-block';
+  document.getElementById('tabPremios').scrollIntoView({behavior:'smooth'});
+}
+
+function cancelPrizeEdit(){
+  editingPrizeIndex = -1;
+  window._pendingPrizeImg = null;
+  document.getElementById('newPrizeName').value='';
+  document.getElementById('newPrizeSocial').value='';
+  document.getElementById('newPrizeDesc').value='';
+  document.getElementById('prizeImgLabel').textContent='📎 Subir foto';
+  const fi = document.getElementById('newPrizeFile'); if(fi) fi.value='';
+  document.getElementById('prizeSubmitBtn').textContent = '+ Agregar emprendimiento';
+  document.getElementById('prizeCancelBtn').style.display = 'none';
+}
+
+async function addPrize(){
+  const name = document.getElementById('newPrizeName').value.trim();
+  const social = document.getElementById('newPrizeSocial').value.trim();
+  const description = document.getElementById('newPrizeDesc').value.trim();
+  if(!name){ showToast('Ingresa el nombre del emprendimiento.'); return; }
+  const data = { name, social, description, img: window._pendingPrizeImg || '' };
+  if(editingPrizeIndex > -1){
+    prizes[editingPrizeIndex] = data;
+    logHistory('Emprendimiento editado en la sección de premios: '+name);
+  } else {
+    prizes.push(data);
+    logHistory('Nuevo emprendimiento agregado a la sección de premios: '+name);
+  }
+  await persistPrizes();
+  cancelPrizeEdit();
+  renderAdminPrizes();
+  renderPrizes();
+  renderSectionVisibility();
+  showToast('Emprendimiento guardado');
+}
+
+async function deletePrize(i){
+  prizes.splice(i,1);
+  if(editingPrizeIndex === i) cancelPrizeEdit();
+  await persistPrizes();
+  logHistory('Emprendimiento eliminado de la sección de premios');
+  renderAdminPrizes();
+  renderPrizes();
+  renderSectionVisibility();
+}
+
+/* ======================= ADMIN: LOGOS EN MOVIMIENTO (todos los que se sumaron) ======================= */
+function renderAdminSponsors(){
+  const host = document.getElementById('adminSponsorsList');
+  if(!host) return;
+  if(!sponsors.length){ host.innerHTML='<div style="padding:20px;text-align:center;color:var(--gris);">Sin emprendimientos cargados aún.</div>'; return; }
+  host.innerHTML = sponsors.map((s,i)=>`
+    <div class="update-row">
+      ${s.logo ? `<img src="${s.logo}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" alt="">` : '<div style="width:40px;height:40px;border-radius:50%;background:#F0EEE8;"></div>'}
+      <div style="flex:1;"><div class="update-date">${escapeHtml(s.name||'(sin nombre)')}</div></div>
+      <div class="row-actions">
+        <button onclick="editSponsor(${i})" style="background:#EAF1FF;color:var(--azul);border-radius:6px;padding:5px 10px;font-size:11px;">Editar</button>
+        <button onclick="deleteSponsor(${i})" style="background:#FCE7EA;color:var(--rojo);border-radius:6px;padding:5px 10px;font-size:11px;">Eliminar</button>
+      </div>
+    </div>`).join('');
+}
+
+function onSponsorLogoChosen(input){
+  if(!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const size = 200;
+      const canvas = document.createElement('canvas');
+      canvas.width = size; canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      const scale = Math.max(size/img.width, size/img.height);
+      const w = img.width*scale, h = img.height*scale;
+      ctx.drawImage(img, (size-w)/2, (size-h)/2, w, h);
+      window._pendingSponsorLogo = canvas.toDataURL('image/jpeg', 0.85);
+      document.getElementById('sponsorLogoLabel').textContent = '✓ ' + file.name;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function editSponsor(i){
+  editingSponsorIndex = i;
+  const s = sponsors[i];
+  document.getElementById('newSponsorName').value = s.name||'';
+  window._pendingSponsorLogo = s.logo||null;
+  document.getElementById('sponsorLogoLabel').textContent = s.logo ? '✓ Logo actual (subí otro para reemplazarlo)' : '📎 Subir logo';
+  document.getElementById('sponsorSubmitBtn').textContent = 'Guardar cambios';
+  document.getElementById('sponsorCancelBtn').style.display = 'inline-block';
+}
+
+function cancelSponsorEdit(){
+  editingSponsorIndex = -1;
+  window._pendingSponsorLogo = null;
+  document.getElementById('newSponsorName').value='';
+  document.getElementById('sponsorLogoLabel').textContent='📎 Subir logo';
+  const fi = document.getElementById('newSponsorLogo'); if(fi) fi.value='';
+  document.getElementById('sponsorSubmitBtn').textContent = '+ Agregar emprendimiento';
+  document.getElementById('sponsorCancelBtn').style.display = 'none';
+}
+
+async function addSponsor(){
+  const name = document.getElementById('newSponsorName').value.trim();
+  if(!name){ showToast('Ingresa el nombre del emprendimiento.'); return; }
+  const data = { name, logo: window._pendingSponsorLogo || '' };
+  if(editingSponsorIndex > -1){
+    sponsors[editingSponsorIndex] = data;
+    logHistory('Logo de emprendimiento editado: '+name);
+  } else {
+    sponsors.push(data);
+    logHistory('Nuevo emprendimiento sumado a la comunidad: '+name);
+  }
+  await persistSponsors();
+  cancelSponsorEdit();
+  renderAdminSponsors();
+  renderSponsorsMarquee();
+  renderSectionVisibility();
+  showToast('Emprendimiento guardado');
+}
+
+async function deleteSponsor(i){
+  sponsors.splice(i,1);
+  if(editingSponsorIndex === i) cancelSponsorEdit();
+  await persistSponsors();
+  logHistory('Emprendimiento eliminado de la comunidad');
+  renderAdminSponsors();
+  renderSponsorsMarquee();
+  renderSectionVisibility();
+}
+
+async function saveTransparency(){
+  config.totalSent = Number(document.getElementById('cfgTotalSent').value)||0;
+  config.shipments = Number(document.getElementById('cfgShipments').value)||0;
+  await persistConfig();
+  logHistory('Datos de transparencia actualizados (total enviado / envíos)');
+  renderTrust();
+  showToast('Datos de transparencia guardados');
+}
+
+function renderAdminUpdates(){
+  document.getElementById('cfgTotalSent').value = config.totalSent||0;
+  document.getElementById('cfgShipments').value = config.shipments||0;
+  const host = document.getElementById('adminUpdatesList');
+  if(!updates.length){ host.innerHTML='<div style="padding:20px;text-align:center;color:var(--gris);">Sin actualizaciones publicadas aún.</div>'; return; }
+  const sorted = [...updates].sort((a,b)=> (b.dateRaw||'').localeCompare(a.dateRaw||''));
+  host.innerHTML = sorted.map(u=>`
+    <div class="update-row">
+      <div class="update-dot" style="background:var(--azul)"></div>
+      <div style="flex:1;"><div class="update-date">${escapeHtml(u.date)}</div><div class="update-text">${escapeHtml(u.text)}</div></div>
+      <button onclick="deleteUpdate('${u.id}')" style="background:#FCE7EA;color:var(--rojo);border-radius:6px;padding:5px 10px;font-size:11px;height:fit-content;">Eliminar</button>
+    </div>`).join('');
+}
+
+async function addUpdate(){
+  const date = document.getElementById('newUpdateDate').value.trim();
+  const text = document.getElementById('newUpdateText').value.trim();
+  if(!date || !text){ showToast('Completa la fecha y la descripción.'); return; }
+  updates.push({ id: Date.now().toString(), date, dateRaw: new Date().toISOString(), text });
+  await persistUpdates();
+  logHistory('Nueva actualización de transparencia publicada: '+text);
+  document.getElementById('newUpdateDate').value='';
+  document.getElementById('newUpdateText').value='';
+  renderAdminUpdates();
+  renderTrust();
+  showToast('Actualización publicada');
+}
+
+async function deleteUpdate(id){
+  updates = updates.filter(u=>u.id!==id);
+  await persistUpdates();
+  logHistory('Actualización de transparencia eliminada');
+  renderAdminUpdates();
+  renderTrust();
+}
+
+function exportCSV(){
+  let csv = 'Numero,Estado,Nombre,WhatsApp,Instagram,Email,Monto,Fecha\n';
+  Object.entries(numbers).sort((a,b)=>Number(a[0])-Number(b[0])).forEach(([k,v])=>{
+    csv += [k, v.status, v.name||'', v.whats||'', v.insta||'', v.email||'', v.amount||0, v.date||''].map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',') + '\n';
+  });
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'manos-por-venezuela-rifa.csv';
+  a.click();
+}
+
+function renderHistory(){
+  const host = document.getElementById('historyList');
+  if(history.length===0){ host.innerHTML='<div style="padding:24px;text-align:center;color:var(--gris);">Sin movimientos aún.</div>'; return; }
+  host.innerHTML = history.map(h=>`<div class="update-row"><div class="update-dot" style="background:var(--azul)"></div><div><div class="update-date">${h.date}</div><div class="update-text">${escapeHtml(h.action)}</div></div></div>`).join('');
+}
+
+/* init */
+window.addEventListener('firebaseReady', loadAll);
+</script>
+</body>
+</html>
